@@ -1,19 +1,4 @@
-package main;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
-public class Game {
 	
 	JFrame window;
 	Container con;
@@ -299,7 +284,7 @@ public class Game {
 		int enemyDamage = 0;
 		enemyDamage = new java.util.Random().nextInt(4);
 		
-		mainTextArea.setText("The monster dealt " + enemyDamage + " damage!");
+		mainTextArea.setText("Enemy dealt " + enemyDamage + " damage!");
 		
 		php = php - enemyDamage;
 		hpLabelNumber.setText("" + php);
