@@ -1,4 +1,24 @@
+package main;
 
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+public class Game {
 	
 	JFrame window;
 	Container con;
@@ -74,7 +94,7 @@
 		mainTextPanel.add(mainTextArea);
 		
 		choiceButtonPanel = new JPanel();
-		choiceButtonPanel.setBounds(250,350,300,150);
+		choiceButtonPanel.setBounds(200,400,400,150);
 		choiceButtonPanel.setBackground(Color.black);
 		choiceButtonPanel.setLayout(new GridLayout(4,1));
 		con.add(choiceButtonPanel);
@@ -272,6 +292,9 @@
 		mainTextArea.setText("You dealt " + playerDamage + " damage!");
 		
 		ehp = ehp - playerDamage;
+		if(ehp<=0) {
+			winScreen();
+		}
 		choice1.setText(">");
 		choice2.setText("");
 		choice3.setText("");
@@ -287,7 +310,31 @@
 		mainTextArea.setText("Enemy dealt " + enemyDamage + " damage!");
 		
 		php = php - enemyDamage;
+		
+		if(php<=0) {
+			loseScreen();
+		}
 		hpLabelNumber.setText("" + php);
+		choice1.setText(">");
+		choice2.setText("");
+		choice3.setText("");
+		choice4.setText("");
+	}
+	
+	public void winScreen() {
+		position = "winScreen";
+		
+		mainTextArea.setText("You win!");
+		choice1.setText(">");
+		choice2.setText("");
+		choice3.setText("");
+		choice4.setText("");
+	}
+	
+	public void loseScreen() {
+		position = "loseScreen";
+		
+		mainTextArea.setText("You lose :(");
 		choice1.setText(">");
 		choice2.setText("");
 		choice3.setText("");
@@ -402,6 +449,16 @@
 				case "c4": battleGuard(); break;
 				}
 				break;
+			
+			//-------WIN/LOSS-------------
+			case "winScreen":
+				switch(yourChoice) {
+				case "c1": System.exit(0);;
+				}
+			case "loseScreen":
+				switch(yourChoice) {
+				case "c1": System.exit(0);;
+				}
 			}
 		}
 	}
